@@ -1,0 +1,71 @@
+places
+id - UUID (Primary Key)
+
+name - VARCHAR(255)
+
+category - VARCHAR(50)
+
+geom - GEOMETRY(Point, 4326)
+
+wheelchair_accessible - VARCHAR(20)
+
+has_accessible_toilet - BOOLEAN
+
+has_ramp - BOOLEAN
+
+avg_score - DECIMAL(3, 2)
+
+created_at - TIMESTAMP
+
+paths
+id - UUID (Primary Key)
+
+line_geom - GEOMETRY(LineString, 4326)
+
+surface_type - VARCHAR(50)
+
+incline_percent - FLOAT
+
+width_cm - INTEGER
+
+has_curb_cuts - BOOLEAN
+
+is_lit_at_night - BOOLEAN
+
+reports
+id - UUID (Primary Key)
+
+user_id - UUID
+
+issue_type - VARCHAR(50)
+
+description - TEXT
+
+photo_url - TEXT
+
+location - GEOMETRY(Point, 4326)
+
+is_active - BOOLEAN
+
+created_at - TIMESTAMP
+
+expires_at - TIMESTAMP
+
+reviews
+id - UUID (Primary Key)
+
+place_id - UUID (Foreign Key references places.id)
+
+rating - INTEGER
+
+comment - TEXT
+
+entry_accessible - BOOLEAN
+
+space_maneuverable - BOOLEAN
+
+created_at - TIMESTAMP
+
+Indexes
+idx_reports_location - GIST index on reports.location
+places.id
